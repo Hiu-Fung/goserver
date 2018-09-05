@@ -39,24 +39,18 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	for {
-		// msgType, msg, err := socket.ReadMessage()
+		msgType, msg, err := socket.ReadMessage()
 
-		// if err != nil {
-		// 	fmt.Println(err)
-		// 	return
-		// }
-		var inMessage Message
-		if err := socket.ReadJSON(&inMessage); err != nil {
+		if err != nil {
 			fmt.Println(err)
-			break
+			return
 		}
 
-		fmt.Println("%#v\n", inMessage) //https://jsbin.com/rixicuzivu/edit?js,console,output
-		// fmt.Println(string(msg))
+		fmt.Println(string(msg))
 
-		// if err = socket.WriteMessage(msgType, msg); err != nil {
-		// 	fmt.Println(err)
-		// 	return
-		// }
+		if err = socket.WriteMessage(msgType, msg); err != nil {
+			fmt.Println(err)
+			return
+		}
 	}
 }
