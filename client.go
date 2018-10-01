@@ -20,12 +20,15 @@ type Client struct {
 
 func (client *Client) Read() {
 	var message Message
+	fmt.Printf("%#v\n", "Read")
 	for {
 		if err := client.socket.ReadJSON(&message); err != nil {
+			fmt.Printf("%#v\n", "error break")
 			break
 		}
 		// what function to call?
 		if handler, found := client.findHandler(message.Name); found {
+			fmt.Printf("%#v\n", "handler called")
 			handler(client, message.Data)
 		}
 	}
