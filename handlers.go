@@ -11,9 +11,9 @@ func addChannel(client *Client, data interface{}) {
 	var message Message
 	mapstructure.Decode(data, &channel)
 	fmt.Printf("%#v\n", channel)
-	// TODO: insert into rethinkDB
+	// TODO: insert into RethinkDB
+	channel.Id = "ABC123"
 	message.Name = "channel add"
 	message.Data = channel
 	client.send <- message
-
 }

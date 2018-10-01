@@ -11,8 +11,9 @@ type Channel struct {
 
 func main() {
 	router := NewRouter()
+
 	router.Handle("channel add", addChannel)
-	// http.HandleFunc("/", handler)
+
 	http.Handle("/", router)
-	http.ListenAndServe(":4001", nil)
+	http.ListenAndServe(":4002", nil)
 }

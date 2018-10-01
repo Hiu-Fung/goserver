@@ -26,13 +26,10 @@ func NewRouter() *Router {
 }
 
 func (r *Router) Handle(msgName string, handler Handler) {
-	fmt.Printf("%#v\n", msgName)
 	r.rules[msgName] = handler
 }
 
 func (r *Router) FindHandler(msgName string) (Handler, bool) {
-	fmt.Printf("%#v\n", "FindHandler")
-	fmt.Printf("%#v\n", msgName)
 	handler, found := r.rules[msgName]
 	return handler, found
 }
@@ -45,7 +42,7 @@ func (e *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	client := NewClient(socket, e.FindHandler)
-	fmt.Printf("%#v\n", "serveHTTP")
 	go client.Write()
 	client.Read()
+
 }
