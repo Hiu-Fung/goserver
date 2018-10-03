@@ -7,8 +7,8 @@ import (
 )
 
 type User struct {
-	Id   string `gorething:"id,omitempty"`
-	Name string `gorething:"name"`
+	Id   string `gorethink:"id,omitempty"`
+	Name string `gorethink:"name"`
 }
 
 func main() {
