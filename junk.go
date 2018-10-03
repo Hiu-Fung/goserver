@@ -37,5 +37,14 @@ func main() {
 		fmt.Println(err)
 		return
 	}
+	user2 := User{
+		Name: "John Doe",
+	}
+	response2, _ := r.Table("user").
+		Get("5d327257-79af-4bad-b0d5-e2adfd627f5e").
+		Update(user2).
+		RunWrite(session)
+
 	fmt.Printf("%#v\n", response)
+	fmt.Printf("%#v\n", response2)
 }
