@@ -47,4 +47,12 @@ func main() {
 
 	fmt.Printf("%#v\n", response)
 	fmt.Printf("%#v\n", response2)
+
+	cursor, _ := r.Table("user").
+		Changes(r.ChangesOpts{IncludeInitial: true}).
+		Run(session)
+	var changeResponse r.ChangeResponse
+	for cursor.Next(&changeResponse) {
+		fmt.Printf("%#v\n", changeResponse)
+	}
 }
